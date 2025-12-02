@@ -1,0 +1,148 @@
+Name: Pratiksha Mahajan
+Roll No : 34
+
+
+Q1.Create a Java program where a thread prints numbers from 1 to 10 with a delay of 500 milliseconds between each number
+
+package MultiThreading;
+
+public class NumberPrintingThread implements Runnable {
+
+    @Override
+    public void run() {
+        for (int i = 1; i <= 10; i++) {
+            System.out.println(i);
+            try {
+                Thread.sleep(500); 
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+}
+-----------------
+package MultiThreading;
+
+public class NumberPrintingThreadMain {
+
+	public static void main(String[] args) {
+	        NumberPrintingThread task = new NumberPrintingThread();
+	        Thread t = new Thread(task);
+	        t.start(); 
+	    }
+	}
+=========================================================================
+
+2.Create a Java program where a thread prints "Hello, World!" 5 times using the Runnable interface.
+
+
+package MultiThreading;
+
+public class RunnableInterfaceTask implements Runnable{
+
+		private String greeting;
+		private int delayTime;
+		
+		public RunnableInterfaceTask(String greeting, int delayTime) {
+			this.greeting = greeting;
+			this.delayTime = delayTime;
+		}
+
+		@Override
+		public void run() {
+			for(int a=1;a<=5;a++) {
+				System.out.println(greeting);
+				try {
+					Thread.sleep(delayTime);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+
+		}
+
+	}
+
+
+-----------
+package MultiThreading;
+
+public class RunnableInterfaceTaskMain {
+
+	public static void main(String[] args) {
+		Runnable r1 =
+		new RunnableInterfaceTask("Hello World", 1000);
+
+		
+		Thread t1 = new Thread(r1);//Setting Runnable as a Target
+		t1.start();
+
+	}
+}
+====================================================
+Q3.Create a program where multiple threads are trying to update the same bank account balance. Use synchronization to ensure thread safety.
+
+/*3.Create a program where multiple threads are trying to update the same 
+bank account balance. Use synchronization to ensure thread safety.
+*/
+package MultiThreading;
+public class BankAccount {
+	    private float balance = 1000;
+	    
+	    synchronized void deposit (float amount) {
+	    System.out.println("Amount Depositing: "+amount);
+	    try {
+	    Thread.sleep(2000);
+	    } catch (InterruptedException e) {
+	    
+	    e.printStackTrace();
+	    }
+	    balance =balance+amount;
+	    System.out.println("Ammount deposited Successfully");
+	    System.out.println("New Balance: "+balance);
+	    }
+   
+}
+---------------
+package MultiThreading;
+
+public class DepositTask extends Thread {
+	
+	    BankAccount account;
+
+	    public DepositTask(BankAccount account, float amount) {
+	        this.account = account;
+	    }
+
+	    @Override
+	    public void run() {
+	        account.deposit(500);
+	}
+}
+
+------------------
+package MultiThreading;
+public class BankMyThreadMain {
+
+	    public static void main(String[] args) {
+	    	BankAccount account =new BankAccount();
+	    	
+	    	DepositTask th1= new DepositTask(account, 100);
+	    	DepositTask th2=new DepositTask(account,300);
+	    	DepositTask th3=new DepositTask(account,500);
+	    	
+	    	
+	    	th1.start();
+	    
+	    	th2.start();
+	    
+	    	th3.start();
+	    }
+}
+
+
+
+	
+	
+		
+	

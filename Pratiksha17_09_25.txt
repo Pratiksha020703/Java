@@ -1,0 +1,682 @@
+//Pratiksha Mahajan
+//Roll No : 34
+
+
+
+Q.1)
+
+package payment;
+
+public interface Refundable {
+	void processRefund(double amount);
+}
+================================================
+package payment;
+
+public interface Rewardable {
+	void addRewardPoints(int points);
+}
+================================================
+package payment;
+
+public class CreditCardPayment implements Payment, Rewardable 
+{
+	double amount;
+	double point=0;
+	
+	@Override
+	public void addRewardPoints(int points) {
+		point=point+points;
+		System.out.println("Reward points : "+points+" added successfully...Total : "+point);
+	}
+
+	@Override
+	public void processPayment(double amount) {
+		this.amount=amount;
+		System.out.println("Amount Process successfully "+amount);
+		addRewardPoints((int)amount/100);
+	}
+
+	@Override
+	public void generateReceipt() {
+		System.out.println("Receipt: Credit Card Payment : "+amount);
+
+	}
+
+}
+======================================================
+package payment;
+
+public class UPIPayment implements Payment, Refundable {
+	double amounts;
+	
+	@Override
+	public void processRefund(double amount) {
+		double refundamt=amount-(amount*0.02);
+		System.out.println("Refund process for amount : "+refundamt);
+	}
+
+	@Override
+	public void processPayment(double amount) {
+		amounts=amount;
+		System.out.println("Payment process for amount : "+amount);
+
+	}
+
+	@Override
+	public void generateReceipt() {
+		System.out.println("Reciept : UPI Transaction of amount : "+amounts);
+
+	}
+
+}
+==========================================================
+package payment;
+
+import java.util.Scanner;
+
+public class MyMain {
+
+	public static void main(String[] args)
+	{
+		Scanner sc=new Scanner(System.in);
+		int ch=0;
+		
+		Payment p;
+		do
+		{
+			System.out.println("-----------BANK------------");
+			System.out.println("1.CreditCard Payment \n2.UPI Payment \n0.Exit");
+			System.out.println("ENter Choice");
+			ch=sc.nextInt();
+			
+			switch(ch)
+			{
+			case 1:
+				p=new CreditCardPayment();
+				p.processPayment(1000);
+				p.generateReceipt();
+				break;
+				
+			case 2:
+				UPIPayment upi=new UPIPayment();
+				p=upi;
+				p.processPayment(2000);
+				p.generateReceipt();
+				upi.processRefund(500);
+				break;
+				
+			case 0:
+				System.out.println("Thank You...");
+				break;
+				
+			default:
+				System.out.println("Invalid choice");
+			}
+			
+		}while(ch!=0);
+	}
+
+}
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q.2)
+
+package Media;
+
+public interface MediaPalyer {
+	void play(String fileName);
+	void stop();
+	
+}
+====================================
+package Media;
+
+public interface Recordable 
+{
+	void record(String fileName);
+	
+}
+====================================
+package Media;
+
+public interface Streamable
+{
+	void stream(String url);
+}
+=====================================
+package Media;
+
+public class VideoPlayer implements MediaPalyer,Streamable {
+
+	@Override
+	public void stream(String url) {
+		System.out.println("Streaming from : "+url);
+		
+	}
+
+	@Override
+	public void play(String fileName) {
+		System.out.println("Play vedio from : "+fileName);
+		
+	}
+
+	@Override
+	public void stop() {
+		System.out.println("Stop the Playing vedio");
+		
+	}
+
+	
+}
+==========================================================
+package Media;
+
+public class Recorder implements MediaPalyer , Recordable{
+
+	@Override
+	public void record(String fileName) {
+		System.out.println("Recording from : "+fileName);
+		
+	}
+
+	@Override
+	public void play(String fileName) {
+		System.out.println("Play vedio from : "+fileName);
+		
+	}
+
+	@Override
+	public void stop() {
+		System.out.println("Stop playing vedio");
+		
+	}
+
+	
+
+}
+==============================================================
+package Media;
+
+import java.util.Scanner;
+
+public class MyMain {
+
+	public static void main(String[] args) 
+	{
+		Scanner sc=new Scanner(System.in);
+		int ch=0;
+		MediaPalyer m;
+		do
+		{
+			System.out.println("1.VedioPlayer \n2.Recorder \n0;Exit");
+			System.out.println("Enter your choice");
+			ch=sc.nextInt();
+			
+			switch(ch)
+			{
+			case 1:
+				VideoPlayer v=new VideoPlayer();
+				m=v;
+				m.play("Movie");
+				m.stop();
+				v.stream("youtube.com");
+				break;
+				
+			case 2:
+				Recorder r=new Recorder();
+				m=r;
+				m.play("File");
+				m.stop();
+				r.record("file");
+				break;
+				
+			case 0:
+				System.out.println("Thank You...");
+				break;
+				
+			default:
+				System.out.println("Invalid Choice");
+			}
+			
+		}while(ch!=0);
+		
+	}
+
+}
+
+---------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q.3)
+
+package MultipleInher;
+
+public interface Sport {
+	void showSports(String name);
+}
+========================================
+package MultipleInher;
+
+public interface Academics {
+	void showGrade(String grade);
+}
+========================================
+package MultipleInher;
+
+public class Person {
+	int age;
+	String name;
+	
+	public Person(int age, String name) {
+		super();
+		this.age = age;
+		this.name = name;
+	}
+	
+	void displayDetails()
+	{
+		System.out.println("Name : "+name+" age: "+age);
+	}
+	
+}
+=========================================
+package MultipleInher;
+
+public class Student extends Person implements Sport, Academics {
+
+	int rollNo;
+	
+	public Student(int age, String name, int rollNo) {
+		super(age, name);
+		this.rollNo = rollNo;
+	}
+	
+	
+	public int getRollNo() {
+		return rollNo;
+	}
+
+
+	public void setRollNo(int rollNo) {
+		this.rollNo = rollNo;
+	}
+
+
+	@Override
+	public void showGrade(String grade) {
+		System.out.println("Academic Grade : "+grade);
+
+	}
+
+	@Override
+	public void showSports(String name) {
+		System.out.println("Sport played : "+name);
+
+	}
+
+}
+==================================================
+package MultipleInher;
+
+public class MyMain {
+
+	public static void main(String[] args) {
+		Student s=new Student(25,"Mitali",20);
+		s.displayDetails();
+		s.showGrade("A");
+		s.showSports("batmintan");
+		System.out.println("Roll No : "+s.getRollNo());
+
+	}
+
+}
+
+---------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q.4)
+
+package SmartDeviceSystem;
+
+public class Device {
+	String deviceName;
+
+	public Device(String deviceName) {
+		super();
+		this.deviceName = deviceName;
+	}
+	
+	public void showDeviceInfo()
+	{
+		System.out.println("Device Name : "+deviceName);
+	}
+
+}
+==================================
+package SmartDeviceSystem;
+
+public interface MusicPlayer {
+	void playMusic(String song);
+}
+==================================
+package SmartDeviceSystem;
+
+public interface Camera {
+	void takePhoto();
+}
+=================================
+package SmartDeviceSystem;
+
+public class SmartPhone extends Device implements Camera, MusicPlayer {
+	String name;
+	
+	
+	public SmartPhone(String deviceName, String name) {
+		super(deviceName);
+		this.name = name;
+	}
+
+	@Override
+	public void playMusic(String song) {
+		System.out.println("Song : "+song+" Playing Music");
+
+	}
+
+	@Override
+	public void takePhoto() {
+		System.out.println("Model : "+name+" Taking photo");
+
+	}
+
+}
+=======================================
+package SmartDeviceSystem;
+
+public class MyMain {
+
+	public static void main(String[] args) {
+		SmartPhone d=new SmartPhone("Vivo","M35");
+		d.showDeviceInfo();
+		d.takePhoto();
+		d.playMusic("spotify");
+
+	}
+
+}
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q.5)
+
+
+package TollManagementSystem;
+
+public abstract class Vehicle {
+	String vehicleName;
+	int param;
+	
+	public Vehicle(String vehicleName, int param) {
+		super();
+		this.vehicleName = vehicleName;
+		this.param = param;
+	}
+	
+	public abstract double calculateToll(int param);
+	
+	public void displayDetails()
+	{
+		System.out.println("Vehicle Name : "+vehicleName);
+	}
+}
+===================================================
+package TollManagementSystem;
+
+public class Car extends Vehicle {
+	
+	public Car(String vehicleName, int seat) {
+		super(vehicleName, seat);
+	}
+	
+	@Override
+	public double calculateToll(int seat) {
+		return seat*20;
+	}
+
+}
+=====================================================
+package TollManagementSystem;
+
+public class Truck extends Vehicle {
+	
+	public Truck(String vehicleName, int load) {
+		super(vehicleName, load);
+	}
+	
+	@Override
+	public double calculateToll(int load) {
+		return load*10;
+	}
+
+}
+======================================================
+package TollManagementSystem;
+
+public class Bus extends Vehicle {
+	
+	public Bus(String vehicleName, int capacity) {
+		super(vehicleName, capacity);
+	}
+	
+	@Override
+	public double calculateToll(int capacity) {
+		return capacity*15;
+	}
+
+}
+=====================================================
+package TollManagementSystem;
+
+import java.util.Scanner;
+
+public class MyMain {
+	static double totalToll=0;
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		
+		Vehicle v;
+		int ch=0;
+		
+		do
+		{
+			System.out.println("1.CAR \n2.TRUCK \n3.BUS \n0.Exit");
+			System.out.println("Enter Choice");
+			ch=sc.nextInt();
+			
+			switch(ch)
+			{
+			case 1:
+				System.out.println("Enter number of seats");
+				int seat=sc.nextInt();
+				v=new Car("Car",seat);
+				double carToll=v.calculateToll(seat);
+				totalToll+=carToll;
+				System.out.println("Car Toll : "+carToll);
+				break;
+				
+			case 2:
+				System.out.println("Enter load in tons");
+				int load=sc.nextInt();
+				v=new Truck("Truck",load);
+				double tolTruck=v.calculateToll(load);
+				totalToll+=tolTruck;
+				System.out.println("Truck Toll : "+tolTruck);
+				break;
+				
+			case 3:
+				System.out.println("Enter Capacity of bus");
+				int capacity=sc.nextInt();
+				v=new Bus("Bus",capacity);
+				double tolBus=v.calculateToll(capacity);
+				totalToll+=tolBus;
+				System.out.println("Bus Toll : "+tolBus);
+				break;
+				
+			case 0:
+				System.out.println("Exixting.....");
+				System.out.println("Your Final Toll : "+totalToll);
+				break;
+				
+			default:
+				System.out.println("Invalid Choice");
+				
+			}
+			
+		}while(ch!=0);
+		
+	}
+
+}
+
+---------------------------------------------------------------------------------------------------------------------------------------------------
+
+Q.6)
+
+
+package HotelBillingSystem;
+
+public abstract class Room {
+	String roomType;
+	int param;
+	
+	public Room(String roomType, int param) {
+		super();
+		this.roomType = roomType;
+		this.param = param;
+	}
+	
+	public abstract double calculateBill(int param);
+	
+	public void displayDetails()
+	{
+		System.out.println("Room Type : "+roomType);
+	}
+	
+}
+=================================================
+package HotelBillingSystem;
+
+public class DeluxeRoom extends Room {
+
+	
+	public DeluxeRoom(String roomType, int dayStayed) {
+		super(roomType, dayStayed);
+	}
+
+	@Override
+	public double calculateBill(int dayStayed) {
+		// TODO Auto-generated method stub
+		return dayStayed*2000;
+	}
+
+}
+=================================================
+package HotelBillingSystem;
+
+public class SuiteRoom extends Room {
+
+	
+	public SuiteRoom(String roomType, int dayStayed) {
+		super(roomType, dayStayed);
+	}
+
+	@Override
+	public double calculateBill(int dayStayed) {
+		// TODO Auto-generated method stub
+		return dayStayed*5000;
+	}
+
+}
+==================================================
+package HotelBillingSystem;
+
+public class ConferenceHall extends Room {
+
+	
+	public ConferenceHall(String roomType, int hoursBooked) {
+		super(roomType, hoursBooked);
+	}
+
+	@Override
+	public double calculateBill(int hoursBooked) {
+		// TODO Auto-generated method stub
+		return hoursBooked*1000;
+	}
+
+}
+===================================================
+package HotelBillingSystem;
+
+import java.util.Scanner;
+
+public class MyMain {
+	static double countBill=0;
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		
+		Room r;
+		int ch=0;
+		
+		do
+		{
+			System.out.println("1.Deluxe Room \n2.Suite Room \n3.Conference Hall \n0.Exit");
+			System.out.println("Enter Choice");
+			ch=sc.nextInt();
+			
+			switch(ch)
+			{
+			case 1:
+				System.out.println("Enter Stayed days");
+				int days=sc.nextInt();
+				r=new DeluxeRoom("Deluxe",days);
+				double Ddays=r.calculateBill(days);
+				r.displayDetails();
+				countBill+=Ddays;
+				System.out.println("Your "+days+" Days Room Bill : "+Ddays);
+				break;
+				
+			case 2:
+				System.out.println("Enter Stayed days");
+				int days1=sc.nextInt();
+				r=new SuiteRoom("Suite",days1);
+				double Sdays=r.calculateBill(days1);
+				r.displayDetails();
+				countBill+=Sdays;
+				System.out.println("Your "+days1+" Days Room Bill : "+Sdays);
+				break;
+				
+			case 3:
+				System.out.println("Enter Hours to Booked");
+				int hr=sc.nextInt();
+				r=new ConferenceHall("ConferenceHall",hr);
+				double hrBook=r.calculateBill(hr);
+				r.displayDetails();
+				countBill+=hrBook;
+				System.out.println("Your "+hr+" hours bill : "+hrBook);
+				break;
+				
+			case 0:
+				System.out.println("Exixting.....");
+				System.out.println("Your Final Bill : "+countBill);
+				break;
+				
+			default:
+				System.out.println("Invalid Choice");
+				
+			}
+			
+		}while(ch!=0);
+
+
+	}
+
+}

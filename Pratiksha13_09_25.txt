@@ -1,0 +1,1065 @@
+////Name - Pratiksha Mahajan
+//Roll no - 34
+
+
+//Q.1
+//Employee Payroll System
+
+
+package pack1;
+
+import java.util.Scanner;
+
+public class Employee 
+{
+	private String name;
+	private int empid;
+	private float hra,da,grossSal,basicSal;
+	
+	public
+	void set_emp()
+	{
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter Employee id,name,basicsal");
+		empid=sc.nextInt();
+		name=sc.next();
+		basicSal=sc.nextFloat();
+		hra=20*basicSal/100;
+		da=15*basicSal/100;
+		grossSal=basicSal+hra+da;
+	}
+	
+	float cal()
+	{
+		return(grossSal);
+	}
+	
+	void show_emp()
+	{
+		System.out.println("Employee Id : "+empid);
+		System.out.println("Employee Name : "+name);
+		System.out.println("Employee Salary : "+basicSal);
+		System.out.println("------------------------------------------------");
+		System.out.println("HRA : "+hra);
+		System.out.println("DA : "+da);
+		System.out.println("-------------------------------------------------");
+		System.out.println("Gross Salary : "+cal());
+	}
+}
+
+
+package pack1;
+
+public class MyMain {
+
+	public static void main(String[] args) {
+		
+		Employee e[];
+		e=new Employee[3];
+		
+		for(int i=0;i<e.length;i++)
+		{
+			e[i]=new Employee();
+			e[i].set_emp();
+		}
+
+		for(int i=0;i<e.length;i++)
+		{
+			e[i].show_emp();
+			System.out.println("=================================================");
+		}
+	}
+
+}
+
+
+
+========================================================================================================================================================================
+
+//Q.2
+//Train Reservation System
+
+package pack1;
+
+public class Train {
+	
+	private int train_no;
+	private String source;
+	private String dest;
+	private int avail_seat;
+	private int numSeat;
+	
+	public
+
+	Train(int train_no, String source, String dest, int avail_seat) {
+		super();
+		this.train_no = train_no;
+		this.source = source;
+		this.dest = dest;
+		this.avail_seat = avail_seat;
+	}
+	
+	void bookSeats(int numSeat)
+	{
+		if(avail_seat > numSeat) 
+		{
+			avail_seat = avail_seat - numSeat;
+			System.out.println("Book Sucessfully");
+			
+		}
+			else 
+			{
+				System.out.println("Insufficient Seats");
+			}
+	}
+	void cancelSeat(int numSeat) {
+		avail_seat = avail_seat + numSeat;
+		System.out.println("Seats cancel successfully");
+	}
+	
+	void displayDetails() {
+		System.out.println("Train no : "+train_no+" Source "+source+" ---> Destination "+dest+" Available seats "+avail_seat);
+	}
+	
+}
+
+
+package pack1;
+
+import java.util.Scanner;
+
+public class MyMain {
+
+	public static void main(String[] args) 
+	{
+		
+		Train tr = new Train(1,"Manmad","Nashik",100);
+		int ch=0;
+		
+		Scanner sc = new Scanner(System.in);
+		
+		do 
+		{
+			System.out.println("1.book Seat \n2.Cancel \n3.Display \n0.Exit");
+			System.out.println("Enter your choice : ");
+			ch = sc.nextInt();
+			
+			switch(ch) 
+			{
+				case 1:
+					System.out.println("Enter the no. of seats :");
+					int seats = sc.nextInt();
+					tr.bookSeats(seats);
+					break;
+				
+				case 2:
+					System.out.println("Enter the no. of seats : ");
+					int s = sc.nextInt();
+					tr.cancelSeat(s);
+					break;
+					
+				case 3:
+					tr.displayDetails();
+					break;
+				
+				case 0:
+					System.out.println("Exiting");
+					break;
+					
+				default:
+					System.out.println("Invalid Choice");
+					break;
+			}
+		
+		}while(ch !=0);
+	}
+}
+
+========================================================================================================================================================================
+
+//Q.3
+//Library Book System
+
+
+package pack1;
+
+import java.util.Scanner;
+
+public class Book {
+	private int bookId;
+	private String title;
+	private String author;
+	private boolean isAvailable;
+	
+	public Book(int bookId, String title, String author) {
+		this.bookId = bookId;
+		this.title = title;
+		this.author = author;
+		isAvailable = true;
+	}
+	
+	void issue_book() {
+		Scanner sc = new Scanner(System.in);
+		
+		if(isAvailable==true) {
+			isAvailable = false;
+			System.out.println(" Book Issued Successfully..");
+		}
+		else {
+			System.out.println("Not Available");
+		}
+		
+	}
+	
+	void return_book() {
+		isAvailable = true;
+		System.out.println("book return successfully");
+	}
+	
+	@Override
+	public String toString() {
+		return "Book [bookId=" + bookId + ", title=" + title + ", author=" + author + ", isAvailable=" + isAvailable
+				+ "]";
+	}
+	
+	boolean search_book(String title) {
+		boolean status = false;
+		status = this.title.equalsIgnoreCase(title);
+		return status;
+	}
+	
+	
+	
+}
+
+
+
+package pack1;
+
+import java.util.Scanner;
+
+public class MyMain {
+
+	public static void main(String[] args) 
+	{
+		Scanner sc = new Scanner(System.in);
+		Book b = new Book(1,"ABC","P.Mehta");
+		int ch=0;
+		
+		
+		System.out.println("\n==============Library Management System==============");
+		
+		do 
+		{
+			System.out.println("1.Issue book \n2.Return Book \n3.Display \n4.Search book \n0.Exit");
+			System.out.println("Enter your choice : ");
+			ch = sc.nextInt();
+			
+			switch(ch) 
+			{
+				case 1:
+					b.issue_book();
+					break;
+				
+				case 2:
+					b.return_book();
+					break;
+					
+				case 3:
+					System.out.println(b.toString());
+					break;
+					
+				case 4:
+					System.out.println("Enter the title of book : ");
+					String b_title = sc.next();
+					boolean result = b.search_book(b_title);
+					System.out.println("Found Status :"+result);
+					break;
+				
+				case 0:
+					System.out.println("Exiting");
+					break;
+					
+				default:
+					System.out.println("Invalid Choice");
+					break;
+			}
+		
+		}while(ch !=0);
+	}
+}
+
+========================================================================================================================================================================
+//Q.4
+//Hotel Room Booking
+
+//Class Room
+package Management;
+import java.util.Scanner;
+public class Room {
+		private int roomNo,daybook;
+		String type,customername;
+		double rentperday=100;
+		boolean isbooked=false;
+		
+		protected
+		double total_bill;
+		public
+		
+		void bookRoom()
+		{
+			if(isbooked==false)
+			{
+			Scanner s=new Scanner(System.in);
+			System.out.println("Enter Custormer Name, Room Number,Number of Days, Type:");
+			customername=s.next();
+			roomNo=s.nextInt();
+			daybook=s.nextInt();
+			type=s.next();
+			}
+			else
+			{
+				System.out.println("Room is Not Available");
+			}
+			isbooked=true;
+		}
+		void vacateRoom()
+		{
+			if(isbooked=true)
+			{
+			this.customername="";
+			this.roomNo=0;
+			this.daybook=0;
+			this.type="";
+			
+			}
+			isbooked=false;
+			System.out.println("Room is Available");
+		}
+		double Bill()
+		{
+			total_bill=daybook*rentperday;
+			return total_bill;
+		}
+		void displayRoomInfo()
+		{
+			if(isbooked=true)
+			{
+				System.out.println("Customer Name is:"+customername);
+				System.out.println("Room Number is:"+roomNo);
+				System.out.println("Number of Days for Book :"+daybook);
+				System.out.println("Type of room:"+type);
+			}
+		}
+		
+}
+
+
+//Main  Program
+package Management;
+import java.util.*;
+public class roommanagementsystem {
+
+	public static void main(String[] args) {
+		Room r=new Room();
+		int ch;
+		do
+		{
+			System.out.println("---------Hotel Room Management----------");
+			System.out.println("1.Book Room \n2.Vacate Room \n3.Display Room Info \n4.Total Bill \n5.Exit");
+			System.out.println("Enter Your Choice:");
+			Scanner sc=new Scanner(System.in);
+			ch=sc.nextInt();
+			
+			
+			switch(ch)
+			{
+			case 1:
+				r.bookRoom();
+				break;
+			
+			case 2:
+				r.vacateRoom();
+				break;
+				
+			case 3:
+				r.displayRoomInfo();
+				break;
+				
+			case 4:
+				System.out.println("Your Bill Is:"+r.Bill());
+				
+				break;
+			
+			case 5:
+				System.out.println("Exiting.....");
+				break;
+				
+			default:
+				System.out.println("Invalid Choice");
+				break;
+			
+			}
+		}while(ch!=0);
+		
+	}
+
+}
+========================================================================================================================================================================
+
+//Q.5
+//Shop Management System
+
+package Shop;
+
+import java.util.Scanner;
+
+public class Product {
+	private
+	int p_id;
+	String name;
+	float price;
+	int qty;
+	public 
+	Product(int p_id, String name,float price, int qty) {
+		this.p_id = p_id;
+		this.name = name;
+		this.price = price;
+		this.qty = qty;
+	}
+	
+	
+
+	public int getP_id() {
+		return p_id;
+	}
+
+
+	public void setP_id(int p_id) {
+		this.p_id = p_id;
+	}
+
+
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+	public float getPrice() {
+		return price;
+	}
+
+
+	public void setPrice(float price) {
+		this.price = price;
+	}
+
+
+	public int getQty() {
+		return qty;
+	}
+
+
+	public void setQty(int qty) {
+		this.qty = qty;
+	}
+
+
+	float cal_price() {
+		return price*qty;
+	}
+
+
+
+
+	@Override
+	public String toString() {
+		return "Product [p_id=" + p_id + ", name=" + name + ", price=" + price + ", qty=" + qty + "]";
+	}
+	
+	
+}
+
+
+
+package Shop;
+
+import java.util.Scanner;
+
+public class Shop
+{
+	Scanner sc = new Scanner(System.in);
+
+	Product shop[];
+	
+	static int p_count;
+		
+		
+	public
+	Shop() {
+		shop=new Product[100];
+		p_count = 0;
+	}
+		
+	void addProduct() {
+		
+		
+		System.out.println("Enter the Product id : ");
+		int id = sc.nextInt();
+		
+		System.out.println("Enter the Product name : ");
+		String p_name = sc.next();
+		
+		System.out.println("Enter the Product Price : ");
+		float p_price = sc.nextFloat();
+		
+		System.out.println("Enter the Product Quantity : ");
+		int p_qty = sc.nextInt();
+		
+		shop[p_count]=new Product(id, p_name, p_price, p_qty);
+		p_count++;
+		
+	}
+	
+	void removeProductById() {
+		System.out.println("Enter Product Id : ");
+		int id = sc.nextInt();
+		
+		for(int i =0;i<p_count;i++) {
+			if(shop[i].getP_id()==id) {
+				for(int j =i;j<p_count-1;j++) {
+					shop[j]=shop[j+1];
+					
+				}
+				shop[p_count-1]=null;
+				p_count--;
+				System.out.println("Product Removed Successfully");
+				return;
+			}
+		}
+		System.out.println("Not Found");
+	}
+	
+	void displayAllProduct() {
+		for(int i = 0;i<p_count;i++) {
+			System.out.println(shop[i].toString());
+		}
+	}
+	
+	void searchByProductId() {
+		System.out.println("Enter Product Id : ");
+		int id = sc.nextInt();
+		for(int i = 0;i<p_count;i++) {
+			if(shop[i].getP_id()==id) {
+				System.out.println("Found");
+				System.out.println(shop[i].toString());
+				return;
+			}
+			
+		}
+		System.out.println("Not found");
+	}
+	
+	void updateProductQuantity() {
+		System.out.println("Enter Product Id : ");
+		int id = sc.nextInt();
+		
+		for(int i = 0;i<p_count;i++) {
+			if(shop[i].getP_id()==id) {
+				System.out.println("Enter Quantity to update : ");
+				int qty = sc.nextInt();
+				shop[i].setQty(qty);
+				System.out.println("Quantity Update Successfully");
+			}
+		}
+	}
+	
+	void calInventoryValue() {
+		float total = 0;
+		for(int i =0;i<p_count;i++) {
+			total = total + shop[i].cal_price();
+		}
+		System.out.println("Total Inventory Value : "+total);
+	}
+}
+
+
+
+
+package Shop;
+
+import java.util.Scanner;
+
+public class Shop_Management {
+	public static void main(String[] args) {
+		Shop sh = new Shop();
+		Scanner sc = new Scanner(System.in);
+		int ch=0;
+		System.out.println("=================Shop Management System=================");
+		
+		do {
+			System.out.println("1.Add Product \n2.Remove Product \n3.Search Product \n4.Display Product \n5.Update Product Quantity \n6.Inventory Value \n0.Exit");
+			System.out.println("Enter the choice");
+			ch = sc.nextInt();
+			
+			switch(ch)
+			{
+				case 1:
+					sh.addProduct();
+					break;
+					
+				case 2:
+					sh.removeProductById();
+					break;
+					
+				case 3:
+					sh.searchByProductId();
+					break;
+					
+				case 4:
+					sh.displayAllProduct();
+					break;
+					
+				case 5:
+					sh.updateProductQuantity();
+					break;
+					
+				case 6:
+					sh.calInventoryValue();
+					break;
+					
+				case 0:
+					System.out.println("Thank you for Visiting...");
+					break;
+					
+				default:
+					System.out.println("Invalid Choice");
+					break;
+			}
+			
+		} while (ch!=0);
+
+	}
+
+}
+
+========================================================================================================================================================================
+
+//Q.6
+//Car Rental System
+
+
+package Car_Management_system;
+
+public class Car {
+    private int id;
+	private String name;
+	private int availableCount;
+	public Car(int id, String name,int availableCount )
+	{
+		this.id = id;
+		this.name = name;
+		this.availableCount = availableCount;
+	}
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public int getAvailableCount() {
+		return availableCount;
+	}
+	public void setAvailableCount(int availableCount) {
+		this.availableCount = availableCount;
+	}
+
+	@Override
+	public String toString() {
+		return "Car [id=" + id + ", name=" + name + ", availableCount=" + availableCount + "]";
+	}
+	
+}
+
+
+
+package Car_Management_system;
+
+import java.util.Scanner;
+
+public class CarShop {
+    Scanner sc=new Scanner(System.in);
+	
+	Car car[];
+	static int count;
+	public
+	CarShop()
+	{
+		car=new Car[100];
+		count=0;
+	}
+	
+	void addCar()
+	{
+		System.out.println("Enter the Car id : ");
+		int id = sc.nextInt();
+		
+		System.out.println("Enter the Car name : ");
+		String name = sc.next();
+		
+		System.out.println("Enter the Available Car : ");
+		int availableCount = sc.nextInt();
+		
+		car[count]=new Car(id, name ,availableCount);
+		count++;
+	}
+	
+	void displayCar()
+	{
+		for(int i = 0;i<count;i++) {
+			System.out.println(car[i].toString());
+		}
+	}
+	
+	void searchById()
+	{
+		System.out.println("Enter Car Registration Id : ");
+		int id = sc.nextInt();
+		for(int i = 0;i<count;i++) {
+			if(car[i].getId()==id) {
+				System.out.println("Found");
+				System.out.println(car[i].toString());
+				return;
+			}
+			
+		}
+		System.out.println("Not found");
+	}
+	
+	void bookCar()
+	{
+		System.out.println("Enter Car Registration Id : ");
+		int id = sc.nextInt();
+		for(int i=0;i<count;i++)
+		{
+			if(car[i].getId()==id)
+			{
+                System.out.println("Found");
+                System.out.println(car[i].toString());
+				if(car[i].getAvailableCount() > 0){
+                    System.out.println("Car book Successfully");
+                    car[i].setAvailableCount(car[i].getAvailableCount() - 1);
+                    return;
+                }
+			}
+			
+		}
+        System.out.println("Not found");
+		
+	}
+	
+	void returnCar()
+	{
+		System.out.println("Enter Car Registration Id : ");
+		int id = sc.nextInt();
+		for(int i=0;i<count;i++)
+		{
+			if(car[i].getId()==id)
+			{
+                System.out.println("Car Returned Successfully");
+                car[i].setAvailableCount(car[i].getAvailableCount() + 1);
+                return;
+			}
+		}
+        System.out.println("Not found");
+	}
+
+}
+
+
+package Car_Management_system;
+
+import java.util.Scanner;
+
+public class App {
+    public static void main(String[] args) throws Exception {
+        CarShop  c = new CarShop();
+		Scanner sc = new Scanner(System.in);
+		int ch=0;
+		System.out.println("=================Car Rental System=================");
+		
+		do {
+			System.out.println("1.Add Car \n2.Display Car \n3.Search car \n4.Book Car \n5.Return Car \n0.Exit");
+			System.out.println("Enter the choice");
+			ch = sc.nextInt();
+			
+			switch(ch)
+			{
+				case 1:
+					c.addCar();
+					break;
+					
+				case 2:
+					c.displayCar();
+					break;
+					
+				case 3:
+					c.searchById();
+					break;
+					
+				case 4:
+					c.bookCar();
+					break;
+					
+				case 5:
+					c.returnCar();
+					break;
+					
+				case 0:
+					System.out.println("Thank you for Visiting...");
+					break;
+					
+				default:
+					System.out.println("Invalid Choice");
+					break;
+			}
+			
+		} while (ch!=0);
+    }
+}
+
+========================================================================================================================================================================
+
+//Q.7
+//Hospital Patient Management System
+
+package Hospital_Management_System;
+
+public class Hospital 
+{
+    private int patientId;
+	private String name;
+	private String address;
+	private boolean isdischarge;
+
+    public 
+
+        Hospital(int patientId, String name, String address) {
+        this.patientId = patientId;
+        this.name = name;
+        this.address = address;
+        this.isdischarge = false;
+    }
+    
+
+        public int getPatientId() {
+        return patientId;
+    }
+
+
+    public void setPatientId(int patientId) {
+        this.patientId = patientId;
+    }
+
+
+    public String getName() {
+        return name;
+    }
+
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+
+    public String getAddress() {
+        return address;
+    }
+
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+
+    public boolean isIsdischarge() {
+        return isdischarge;
+    }
+
+
+    public void setIsdischarge(boolean isdischarge) {
+        this.isdischarge = isdischarge;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Hospital [patientId=" + patientId + ", name=" + name + ", address=" + address + ", isdischarge="
+                + isdischarge + "]";
+    }
+
+    
+        
+}
+
+
+package Hospital_Management_System;
+
+import java.util.Scanner;
+
+public class Hospital_function
+{
+    Scanner sc = new Scanner(System.in);
+	Hospital hos[];
+	
+	static int p_count;
+
+	public
+	Hospital_function() 
+    {
+		hos=new Hospital[100];
+		p_count = 0;
+	}
+
+    void addPatient() 
+    {	
+		System.out.println("Enter the Patient id : ");
+		int id = sc.nextInt();
+		
+		System.out.println("Enter the Patient name : ");
+		String p_name = sc.next();
+		
+        System.out.println("Enter the Patient Address : ");
+		String p_add = sc.next();
+		hos[p_count]=new Hospital(id, p_name, p_add);
+		p_count++;
+        System.out.println(" Patient Admitted Successfully..");
+		
+	}
+
+
+    void searchByPatientId() 
+    {
+        System.out.println("Enter Patient Id : ");
+        int id = sc.nextInt();
+            for(int i = 0;i<p_count;i++) {
+                if(hos[i].getPatientId()==id) {
+                    System.out.println("Found");
+                    System.out.println(hos[i].toString());
+                    return;
+                }
+                
+            }
+        System.out.println("Not found");
+	}
+
+    void displayAllPatient() 
+    {
+	    for(int i = 0;i<p_count;i++)
+        {
+		    System.out.println(hos[i].toString());
+	    }
+    }
+
+    void dischargePatient()
+    {
+        System.out.println("Enter Patient Id : ");
+        int id = sc.nextInt();
+        for(int i = 0;i<p_count;i++) 
+        {
+            if(hos[i].getPatientId()==id) 
+            {
+                System.out.println("Found");
+                if (hos[i].isIsdischarge() == false) 
+                {
+                    hos[i].setIsdischarge(true);
+                    System.out.println(" Patient Discharge Successfully..");
+                    return;
+                }
+
+                else
+                {
+                    System.out.println("Not found");
+                }                    
+            }
+	    }
+    }
+
+    void displayDischargePatient(){
+        for(int i = 0;i<p_count;i++)
+        {
+            if (hos[i].isIsdischarge() == false) {
+
+                System.out.println(hos[i].toString());
+            }
+		    
+	    }
+    }
+
+
+}
+
+
+
+package Hospital_Management_System;
+
+import java.util.Scanner;
+
+public class App {
+    public static void main(String[] args) {
+        Hospital_function hos = new Hospital_function();
+        Scanner sc = new Scanner(System.in);
+		int ch=0;
+		System.out.println("=================Hospital Management System=================");
+		
+		do {
+			System.out.println("1.Add Patient \n2.Display All Patient \n3.Search Patient \n4.Discharge Patient \n5.Display Admitted Patients \n0.Exit");
+			System.out.println("Enter the choice");
+			ch = sc.nextInt();
+			
+			switch(ch)
+			{
+				case 1:
+					hos.addPatient();
+					break;
+					
+				case 2:
+					hos.displayAllPatient();
+					break;
+					
+				case 3:
+					hos.searchByPatientId();
+					break;
+					
+				case 4:
+					hos.dischargePatient();
+					break;
+					
+				case 5:
+					hos.displayDischargePatient();
+					break;
+					
+				case 0:
+					System.out.println("Get Well Soon...");
+					break;
+					
+				default:
+					System.out.println("Invalid Choice");
+					break;
+			}
+			
+		} while (ch!=0);
+    }
+}

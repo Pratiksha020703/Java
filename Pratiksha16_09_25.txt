@@ -1,0 +1,631 @@
+//Pratiksha Mahajan
+//Roll No. : 34
+
+
+
+Q.1)
+package Day7_lab;
+
+public interface Vehicle 
+{
+	int fuelEfficiency();
+	int maxSpeed();
+	void displayDetails();
+}
+===============================
+package Day7_lab;
+
+public class Car implements Vehicle
+{
+	String brand;
+	String  model;
+	
+	public Car(String brand, String model) {
+		super();
+		this.brand = brand;
+		this.model = model;
+	}
+
+	@Override
+	public int fuelEfficiency() {
+		
+		return 15;
+	}
+
+	@Override
+	public int maxSpeed() {
+		
+		return 180;
+	}
+
+	@Override
+	public void displayDetails() {
+		System.out.println("Brand : "+brand+" Model : "+model);
+		System.out.println("Fuel Efficiency : "+fuelEfficiency());
+		System.out.println("Max Speed : "+maxSpeed());
+		
+	}
+
+}
+===========================================================
+package Day7_lab;
+
+public class Bike implements Vehicle
+{
+	String brand;
+	String model;
+	
+	public Bike(String brand, String model) {
+		super();
+		this.brand = brand;
+		this.model = model;
+	}
+
+	@Override
+	public int fuelEfficiency() {
+		
+		return 35;
+	}
+
+	@Override
+	public int maxSpeed() {
+		
+		return 120;
+	}
+
+	@Override
+	public void displayDetails() {
+		System.out.println("Brand : "+brand+" Model : "+model);
+		System.out.println("Fuel Efficiency : "+fuelEfficiency());
+		System.out.println("Max Speed : "+maxSpeed());
+		
+	}
+}
+=====================================================================
+package Day7_lab;
+
+public class MyMain {
+
+	public static void main(String[] args)
+	{
+		Vehicle v;
+		v=new Car("Maruti","Swift");
+		v.displayDetails();
+		System.out.println("-----------------------------------------");
+		v=new Bike("Honda","Shine");
+		v.displayDetails();
+
+	}
+
+}
+
+----------------------------------------------------------------------------------------------------------
+
+Q.2)
+package Day7_lab;
+
+public interface ElectronicDevice 
+{
+	int powerConsumption();
+	String deviceType();
+	void displayDetails();
+}
+====================================
+package Day7_lab;
+
+public class Smartphone implements ElectronicDevice
+{
+	String brand;
+	String model;
+	
+	public Smartphone(String brand, String model) {
+		super();
+		this.brand = brand;
+		this.model = model;
+	}
+
+	@Override
+	public int powerConsumption() {
+		// TODO Auto-generated method stub
+		return 100;
+	}
+
+	@Override
+	public String deviceType() {
+		
+		return "Mobile";
+	}
+
+	@Override
+	public void displayDetails() {
+		System.out.println("Brand : "+brand+ " Model : "+model);
+		System.out.println("Power Consumption : "+powerConsumption());
+		System.out.println("Device Type : "+deviceType());
+	}
+	
+	
+	
+}
+===========================================================
+package Day7_lab;
+
+public class Laptop implements ElectronicDevice
+{
+	String brand;
+	String model;
+	
+	public Laptop(String brand, String model) {
+		super();
+		this.brand = brand;
+		this.model = model;
+	}
+
+	@Override
+	public int powerConsumption() {
+		// TODO Auto-generated method stub
+		return 150;
+	}
+
+	@Override
+	public String deviceType() {
+		// TODO Auto-generated method stub
+		return "Laptop";
+	}
+
+	@Override
+	public void displayDetails() {
+		System.out.println("Brand : "+brand+ " Model : "+model);
+		System.out.println("Power Consumption : "+powerConsumption());
+		System.out.println("Device Type : "+deviceType());
+		
+	}
+	
+	
+	
+}
+===========================================================
+package Day7_lab;
+
+public class MyMain {
+
+	public static void main(String[] args)
+	{
+		ElectronicDevice e;
+		e=new Smartphone("Vivo","1938");
+		e.displayDetails();
+		System.out.println("-----------------------------------------");
+		e=new Laptop("HP","window11");
+		e.displayDetails();
+
+	}
+
+}
+----------------------------------------------------------------------------------------------------------
+
+Q.3)
+
+package Day7_lab;
+
+public interface BankAccount 
+{
+	double calInterest();
+	void displayDetails();
+}
+===============================
+package Day7_lab;
+
+public class SavingAccount implements BankAccount 
+{
+	String accHolderName;
+	int accNumber;
+	int balance;
+
+	public SavingAccount(String accHolderName, int accNumber, int balance) {
+		super();
+		this.accHolderName = accHolderName;
+		this.accNumber = accNumber;
+		this.balance = balance;
+	}
+	
+	public void deposite(int amt)
+	{
+		balance=balance+amt;
+		System.out.println(amt+" Deposited Successfully");
+	}
+
+	public void widthdraw(int amt)
+	{
+		if(balance>amt)
+		{
+			balance=balance-amt;
+			System.out.println(amt+" widthrawn Successfully");
+		}
+		else {
+			System.out.println("Insufficient Funds");
+		}
+	}
+
+	@Override
+	public double calInterest() {
+		
+		return balance*0.04;
+	}
+
+	@Override
+	public void displayDetails() {
+		System.out.println("Account Holder Name : "+accHolderName);
+		System.out.println("Account Number : "+accNumber);
+		System.out.println("Balance : "+balance);
+		System.out.println("Interest Rate : "+calInterest());
+	}
+	
+	
+}
+=======================================================
+package Day7_lab;
+
+public class FixDepositeAccount implements BankAccount 
+{
+	String accHolderName;
+	int accNumber;
+	int balance;
+
+	public FixDepositeAccount(String accHolderName, int accNumber, int balance) {
+		super();
+		this.accHolderName = accHolderName;
+		this.accNumber = accNumber;
+		this.balance = balance;
+	}
+	
+	public void deposite(int amt)
+	{
+		balance=balance+amt;
+		System.out.println(amt+" Deposited Successfully");
+	}
+
+	public void widthdraw(int amt)
+	{
+		if(balance>amt)
+		{
+			balance=balance-amt;
+			System.out.println(amt+" widthrawn Successfully");
+		}
+		else {
+			System.out.println("Insufficient Funds");
+		}
+	}
+
+	@Override
+	public double calInterest() {
+		
+		return balance*0.07;
+	}
+
+	@Override
+	public void displayDetails() {
+		System.out.println("Account Holder Name : "+accHolderName);
+		System.out.println("Account Number : "+accNumber);
+		System.out.println("Balance : "+balance);
+		System.out.println("Interest Rate : "+calInterest());
+	}
+	
+	
+}
+=======================================================
+package Day7_lab;
+
+public class MyMain {
+
+	public static void main(String[] args)
+	{
+		BankAccount sAccount=new SavingAccount("ABC",1001,1000);
+		BankAccount FDAccount=new FixDepositeAccount("PQR",2001,2000);
+		
+		sAccount.displayDetails();
+		((SavingAccount)sAccount).deposite(5000);
+		
+		FDAccount.displayDetails();
+		((FixDepositeAccount)FDAccount).widthdraw(500);
+		
+	}
+
+}
+----------------------------------------------------------------------------------------------------------
+
+Q.4)
+
+package Library_fine;
+
+
+
+public class MyMain {
+
+
+
+public static void main(String[] args) {
+
+
+
+Book book = new Book("Harry Potter", "J.K. Rowling");
+
+int bookDaysOverdue = 5;
+
+System.out.println("Fine for the Book: " + book.calculateFine(bookDaysOverdue));
+
+book.displayItemDetails();
+
+book.readSample();
+
+
+
+System.out.println("\n-------------------------------\n");
+
+
+
+
+DVD dvd = new DVD("Inception", 148);
+
+int dvdDaysOverdue = 3;
+
+System.out.println("Fine for the DVD: " + dvd.calculateFine(dvdDaysOverdue));
+
+dvd.displayItemDetails();
+
+dvd.playTrailer();
+
+}
+
+} -------------------------------------
+
+//LibraryItem.java(interface)
+
+package Library_fine;
+
+
+
+public interface LibraryItem {
+
+double calculateFine(int daysOverdue); // Calculate the fine based on overdue days
+
+void displayItemDetails(); // Display the details of the library item
+
+}
+
+-----------------------------------------------
+
+//Book.java
+
+package Library_fine;
+
+
+
+public class Book implements LibraryItem {
+
+private String title;
+
+private String author;
+
+private final double finePerDay = 2.0; // Fine of 2 Rs per day
+
+
+
+public Book(String title, String author) {
+
+this.title = title;
+
+this.author = author;
+
+}
+
+
+
+@Override
+
+public double calculateFine(int daysOverdue) {
+
+return daysOverdue * finePerDay; // Fine = daysOverdue * 2 Rs
+
+}
+
+
+
+@Override
+
+public void displayItemDetails() {
+
+System.out.println("Book Details:");
+
+System.out.println("Title: " + title);
+
+System.out.println("Author: " + author);
+
+}
+
+
+
+// Special method to read a sample from the book
+
+public void readSample() {
+
+System.out.println("Wingardium LeviosaaA! " + title);
+
+}
+
+} -------------------------------------------------
+
+//DVD.java
+
+package Library_fine;
+
+
+
+public class DVD implements LibraryItem {
+
+private String title;
+
+private int durationMinutes;
+
+private final double finePerDay = 5.0; // Fine of 5 Rs per day
+
+
+
+public DVD(String title, int durationMinutes) {
+
+this.title = title;
+
+this.durationMinutes = durationMinutes;
+
+}
+
+
+
+@Override
+
+public double calculateFine(int daysOverdue) {
+
+return daysOverdue * finePerDay; // Fine = daysOverdue * 5 Rs
+
+}
+
+
+
+@Override
+
+public void displayItemDetails() {
+
+System.out.println("DVD Details:");
+
+System.out.println("Title: " + title);
+
+System.out.println("Duration: " + durationMinutes + " minutes");
+
+}
+
+
+
+// Special method to play a trailer for the DVD
+
+public void playTrailer() {
+
+System.out.println("Playing trailer for DVD: " + title);
+
+}
+
+}
+---------------------------------------------------------------------------------------------------------
+
+Q.5)
+
+package payment;
+
+public interface Refundable {
+	void processRefund(double amount);
+}
+================================================
+package payment;
+
+public interface Rewardable {
+	void addRewardPoints(int points);
+}
+================================================
+package payment;
+
+public class CreditCardPayment implements Payment, Rewardable 
+{
+	double amount;
+	double point=0;
+	
+	@Override
+	public void addRewardPoints(int points) {
+		point=point+points;
+		System.out.println("Reward points : "+points+" added successfully...Total : "+point);
+	}
+
+	@Override
+	public void processPayment(double amount) {
+		this.amount=amount;
+		System.out.println("Amount Process successfully "+amount);
+		addRewardPoints((int)amount/100);
+	}
+
+	@Override
+	public void generateReceipt() {
+		System.out.println("Receipt: Credit Card Payment : "+amount);
+
+	}
+
+}
+======================================================
+package payment;
+
+public class UPIPayment implements Payment, Refundable {
+	double amounts;
+	
+	@Override
+	public void processRefund(double amount) {
+		double refundamt=amount-(amount*0.02);
+		System.out.println("Refund process for amount : "+refundamt);
+	}
+
+	@Override
+	public void processPayment(double amount) {
+		amounts=amount;
+		System.out.println("Payment process for amount : "+amount);
+
+	}
+
+	@Override
+	public void generateReceipt() {
+		System.out.println("Reciept : UPI Transaction of amount : "+amounts);
+
+	}
+
+}
+==========================================================
+package payment;
+
+import java.util.Scanner;
+
+public class MyMain {
+
+	public static void main(String[] args)
+	{
+		Scanner sc=new Scanner(System.in);
+		int ch=0;
+		
+		Payment p;
+		do
+		{
+			System.out.println("-----------BANK------------");
+			System.out.println("1.CreditCard Payment \n2.UPI Payment \n0.Exit");
+			System.out.println("ENter Choice");
+			ch=sc.nextInt();
+			
+			switch(ch)
+			{
+			case 1:
+				p=new CreditCardPayment();
+				p.processPayment(1000);
+				p.generateReceipt();
+				break;
+				
+			case 2:
+				UPIPayment upi=new UPIPayment();
+				p=upi;
+				p.processPayment(2000);
+				p.generateReceipt();
+				upi.processRefund(500);
+				break;
+				
+			case 0:
+				System.out.println("Thank You...");
+				break;
+				
+			default:
+				System.out.println("Invalid choice");
+			}
+			
+		}while(ch!=0);
+	}
+
+}

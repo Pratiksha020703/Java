@@ -1,0 +1,252 @@
+//Pratiksha Santosh Mahajan
+//Roll No:34
+
+package Day9_lab;
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class InputMisMatchedException_1 {
+	
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter the number : ");
+		try{
+			int num=sc.nextInt();
+			System.out.println("Square : "+(num*num));
+		}catch(InputMismatchException e)
+		{
+			System.out.println("Invalid Input fro integer");
+		}
+		System.out.println("Main Continue......");
+	}
+
+}
+--------------------------------------------------------------------------------------------
+
+package Day9_lab;
+
+import java.util.Scanner;
+
+public class Array {
+
+	public static void main(String[] args) {
+	
+		int arr[]=new int[5];
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter array elements : ");
+		for(int i=0;i<arr.length;i++)
+		{
+			arr[i]=sc.nextInt();
+		}
+		System.out.println("Enter the index location");
+		int i=sc.nextInt();
+		try {
+		System.out.println("Element at "+i+" index loc is : "+arr[i]);
+		}catch (ArrayIndexOutOfBoundsException e){
+			System.out.println("Enter valid index up to 4");
+		}
+	}
+
+}
+--------------------------------------------------------------------------------------------
+
+package Day9_lab;
+
+import java.util.NoSuchElementException;
+import java.util.StringTokenizer;
+
+public class StringTokenizer_1 {
+
+	public static void main(String[] args) {
+
+		String s="Hello World";
+		try {
+		StringTokenizer str=new StringTokenizer(s," ");
+		System.out.println(str.nextToken());
+		System.out.println(str.nextToken());
+		System.out.println(str.nextToken());
+		}catch(NoSuchElementException e)
+		{
+			System.out.println("Invalid token");
+		}
+	}
+}
+--------------------------------------------------------------------------------------------
+package Day9_lab;
+
+import java.util.Scanner;
+
+public class NumberFormatException_1 {
+
+	public static void main(String[] args) {
+		
+		try {
+			Scanner sc=new Scanner(System.in);
+			System.out.println("Enter the integer String to convert");
+			String str=sc.next();
+			String str1=sc.next();
+			System.out.println("Addition : "+(str+str1));
+			int num=Integer.parseInt(str);
+			int num1=Integer.parseInt(str1);
+			System.out.println("Addition in using parseInt method : "+(num+num1));
+		} catch (NumberFormatException e) {
+			//e.printStackTrace();
+			System.out.println("Invalid Input");
+		}
+
+	}
+
+}
+--------------------------------------------------------------------------------------------
+
+package Day9_lab;
+
+public class UserDefinedException {
+
+	public static void main(String[] args) throws MyException{
+	
+		try {
+			String s="Hello";
+			String string1=s.toLowerCase();
+			//System.out.println(string1);
+			if(string1.contains("a")||string1.contains("e")||string1.contains("i")||
+					string1.contains("o")||string1.contains("u"))
+			{
+				System.out.println("Has Vowels");
+			}
+			else
+			{
+				throw new MyException("It does not contain any vowels");
+			}
+		} 
+		catch (MyException e)
+		{
+			System.out.println(e.getMessage());
+		}
+
+	}
+
+}
+=====================================
+package Day9_lab;
+
+public class MyException extends Exception {
+	
+	public MyException(String msg) {
+		super(msg);
+	}
+
+}
+--------------------------------------------------------------------------------------------
+
+package Day9_lab;
+
+public class Calculator {
+	int num1;
+	int num2;
+	
+	public Calculator(int num1, int num2) {
+		super();
+		this.num1 = num1;
+		this.num2 = num2;
+	}
+	
+	public void add(int num1,int num2)
+	{
+		if(num1<0 || num2<0)
+		{
+			throw new ArithmeticException("In addition no should not be negative");
+		}
+		else
+		{
+			System.out.println("Addition : "+(num1+num2));
+		}
+	}
+	
+	public void sub(int num1,int num2)
+	{
+		if(num1<0 || num2<0)
+		{
+			throw new ArithmeticException("In Substraction no should not be negative");
+		}
+		else
+		{
+			System.out.println("Substraction : "+(num1-num2));
+		}
+	}
+	
+	public void mul(int num1,int num2)
+	{
+		if(num1==0 || num2==0)
+		{
+			throw new ArithmeticException("In Multiplication no should not be zero");
+		}
+		else
+		{
+			System.out.println("Substraction : "+(num1*num2));
+		}
+	}
+	
+	public void div(int num1,int num2)
+	{
+		if(num1==0 || num2==0)
+		{
+			throw new ArithmeticException("In Division no should not be zero");
+		}
+		else
+		{
+			System.out.println("Substraction : "+(num1/num2));
+		}
+	}
+	
+
+}
+================================
+package Day9_lab;
+
+import java.util.Scanner;
+
+public class Tester {
+
+	public static void main(String[] args) {
+	
+		try {
+			Scanner sc=new Scanner(System.in);
+			System.out.println("Enter the numbers");
+			int num1=sc.nextInt();
+			int num2=sc.nextInt();
+			
+			Calculator cal=new Calculator(num1,num2);
+			//cal.add(num1, num2);
+			//cal.sub(num1, num2);
+			//cal.mul(num1, num2);
+			cal.div(num1, num2);
+		} catch (ArithmeticException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+}
+--------------------------------------------------------------------------------------------
+
+package Day9_lab;
+
+import java.util.Scanner;
+
+public class Tester {
+
+	public static void main(String[] args) {
+	
+		try {
+			Scanner sc=new Scanner(System.in);
+			System.out.println("Enter the integer String");
+			String num=sc.next();
+			int num1=Integer.parseInt(num);
+			System.out.println("Given Integer : "+num1);
+		} catch (NumberFormatException e) {
+			System.out.println("Either noo-Integer value or exceeding the range");
+		}
+	}
+
+}

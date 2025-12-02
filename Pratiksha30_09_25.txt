@@ -1,0 +1,388 @@
+//Pratiksha Santosh Mahajan
+//Roll no: 34
+
+
+
+package Day9_lab_Static;
+
+public class Circle {
+
+	public final double pi=3.14;
+	double radius;
+	
+	public Circle(double radius)
+        {
+		super();
+		this.radius = radius;
+	}
+	
+	public void calArea()
+	{
+		System.out.println("Area of Circle : "+(pi*radius*radius));
+	}
+}
+========================
+package Day9_lab_Static;
+
+public class MyMain {
+
+	public static void main(String[] args) {
+		Circle c=new Circle(10);
+		c.calArea();
+	}
+}
+----------------------------------------------------------------------------------------------------------------
+
+package Day9_lab_Static;
+
+public class Cylinder {
+	
+	public final double pi=3.14;
+	double radius;
+	int heigth;
+	
+	public Cylinder(double radius, int heigth) 
+        {
+		super();
+		this.radius = radius;
+		this.heigth = heigth;
+	}
+
+	public void calVolume()
+	{
+		System.out.println("Volume of Cylinder : "+(pi*radius*radius*heigth));
+	}
+	
+
+}
+===================================
+package Day9_lab_Static;
+
+public class MyMain {
+
+	public static void main(String[] args) {
+		Cylinder c=new Cylinder(5,2);
+		c.calVolume();
+	}
+}
+----------------------------------------------------------------------------------------------------------------
+package Day9_lab_Static;
+
+class BankAccount {
+    
+    final String BANK_CODE = "RBI12345";
+
+    String accountHolder;
+    int accountNumber;
+    double balance;
+
+    BankAccount(String accountHolder, int accountNumber, double balance) {
+        this.accountHolder = accountHolder;
+        this.accountNumber = accountNumber;
+        this.balance = balance;
+    }
+
+    void display() {
+        System.out.println("Account Holder: " + accountHolder);
+        System.out.println("Account Number: " + accountNumber);
+        System.out.println("Balance: " + balance);
+        System.out.println("Bank Code: " + BANK_CODE);
+    }
+}
+
+package Day9_lab_Static;
+
+public class MyMain {
+    public static void main(String[] args) {
+        BankAccount acc1 = new BankAccount("Mitali", 101, 5000);
+        acc1.display();
+    }
+}
+
+----------------------------------------------------------------------------------------------------------------
+package Day9_lab_Static;
+
+class Parent {
+    
+    final void display() {
+        System.out.println("This is Parent's method");
+    }
+}
+==========================
+package Day9_lab_Static;
+
+class Child extends Parent {
+  
+    void show() {
+        System.out.println("This is Child's method");
+    }
+}
+============================
+
+package Day9_lab_Static;
+
+public class MyMain {
+    public static void main(String[] args) {
+        Child obj = new Child();
+        obj.display(); 
+        obj.show();    
+    }
+}
+
+----------------------------------------------------------------------------------------------------------------
+
+
+package Day9_lab_Static;
+
+public class Vehicle {
+
+	public final void startEngine()
+	{
+		System.out.println("Vehicle Engine started");
+	}
+}
+===============================
+package Day9_lab_Static;
+
+public class Car extends Vehicle {
+	
+	public void cstartEngine()
+	{
+		super.startEngine();
+		System.out.println("Car Engine started");
+	}
+
+}
+===============================
+package Day9_lab_Static;
+
+public class MyMain {
+
+	public static void main(String[] args) {
+		Car c=new Car();
+		c.cstartEngine();
+	}
+}
+------------------------------------------------------------------------
+
+package Day9_lab_Static;
+
+final class Constants {
+   
+    static final int MAX_USERS = 100;
+    static final String APP_NAME = "MyBankingApp";
+
+    static void showConfig() {
+        System.out.println("App Name: " + APP_NAME);
+        System.out.println("Max Users: " + MAX_USERS);
+    }
+}
+========================================
+package Day9_lab_Static;
+
+public class MyMain {
+    public static void main(String[] args) {
+        Constants.showConfig();
+    }
+}
+
+------------------------------------------------------------------------
+
+package Day9_lab_Static;
+
+public final class MathLibrary {
+
+	public static int square(int n)
+	{
+		return(n*n);
+	}
+	
+}
+=========================
+package Day9_lab_Static;
+
+import java.util.Scanner;
+
+public class AdvancedMath {
+
+	public static void main(String[] args) {
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Enter number");
+		//int n=sc.nextInt();
+		System.out.println("Square : "+MathLibrary.square(sc.nextInt()));
+	}
+}
+
+------------------------------------------------------------------------
+package Day9_lab_Static;
+
+class Student {
+    String name;
+    int id;
+
+    static int count = 0;
+
+    Student(String name, int id) {
+        this.name = name;
+        this.id = id;
+        count++; 
+    }
+
+    void display() {
+        System.out.println("ID: " + id + ", Name: " + name);
+    }
+
+    static void showCount() {
+        System.out.println("Total Student objects created: " + count);
+    }
+}
+============================
+package Day9_lab_Static;
+
+public class MyMain {
+    public static void main(String[] args) {
+        Student s1 = new Student("Mitali", 101);
+        Student s2 = new Student("Rahul", 102);
+        Student s3 = new Student("Sneha", 103);
+
+        s1.display();
+        s2.display();
+        s3
+    }
+}
+------------------------------------------------------------------------
+
+package Day9_lab_Static;
+
+class Employee {
+    String name;
+    int id;
+
+    static String companyName = "TechCorp";
+
+    Employee(String name, int id) {
+        this.name = name;
+        this.id = id;
+    }
+
+    void display() {
+        System.out.println("ID: " + id + ", Name: " + name + ", Company: " + companyName);
+    }
+}
+=======================================
+package Day9_lab_Static;
+
+public class MyMain {
+    public static void main(String[] args) {
+        Employee e1 = new Employee("Mitali", 101);
+        Employee e2 = new Employee("Rahul", 102);
+        Employee e3 = new Employee("Sneha", 103);
+
+        System.out.println("Before changing company name:");
+        e1.display();
+        e2.display();
+        e3.display();
+
+        Employee.companyName = "InnoTech";
+
+        System.out.println("\nAfter changing company name:");
+        e1.display();
+        e2.display();
+        e3.display();
+    }
+}
+------------------------------------------------------------------------
+
+package Day9_lab_Static;
+
+
+class Calculator {
+  
+    static int add(int a, int b) {
+        return a + b;
+    }
+}
+==================================
+
+package Day9_lab_Static;
+
+public class MyMain {
+    public static void main(String[] args) {
+        
+        int sum1 = Calculator.add(10, 20);
+        int sum2 = Calculator.add(50, 70);
+
+        System.out.println("Sum 1: " + sum1);
+        System.out.println("Sum 2: " + sum2);
+    }
+}
+------------------------------------------------------------------------
+
+package Day9_lab_Static;
+
+class Converter {
+
+    static String toUpper(String s) {
+        return s.toUpperCase();
+    }
+}
+========================================
+package Day9_lab_Static;
+
+public class MyMain {
+    public static void main(String[] args) {
+  
+        String input = "hello world";
+        String result = Converter.toUpper(input);
+
+        System.out.println("Original: " + input);
+        System.out.println("Uppercase: " + result);
+    }
+}
+
+------------------------------------------------------------------------
+
+package Day9_lab_Static;
+
+class Config {
+
+    static String appName;
+
+    static {
+        appName = "MyApplication";
+        System.out.println("Static block executed. App initialized!");
+    }
+}
+===================================
+package Day9_lab_Static;
+
+public class Main {
+    public static void main(String[] args) {
+                System.out.println("App Name: " + Config.appName);
+    }
+}
+
+------------------------------------------------------------------------
+
+package Day9_lab_Static;
+
+class Database {
+        
+    static String dbName = "TechDB";
+
+    static {
+        System.out.println("Database connected");
+    }
+}
+===========================================
+package Day9_lab_Static;
+
+public class Main {
+    public static void main(String[] args) {
+        
+        System.out.println("Database Name: " + Database.dbName);
+    }
+}
+
+
+

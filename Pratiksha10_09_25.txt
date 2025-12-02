@@ -1,0 +1,416 @@
+//Name : Pratiksha Mahajan
+//Roll no : 34
+
+
+//Restaurent Management system
+
+package array;
+
+import java.util.Scanner;
+
+public class array1 {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int qty,bill;
+		
+		System.out.println("Menu");
+		System.out.println("1.Pizza \n2.Burgur \n3.sandwitch \4.Coffee");
+		System.out.println("Enter the choice");
+		int ch = sc.nextInt();
+		
+		
+		switch(ch){
+			case 1:
+				System.out.println("Enter the quantity");
+				qty = sc.nextInt();
+				bill = qty * 200;
+				System.out.println("Bill : "+bill);
+				break;
+				
+			case 2:
+				System.out.println("Enter the quantity");
+				qty = sc.nextInt();
+				bill = qty * 150;
+				System.out.println("Bill : "+bill);
+				break;
+		
+			case 3:
+				System.out.println("Enter the quantity");
+				qty = sc.nextInt();
+				bill = qty * 100;
+				System.out.println("Bill : "+bill);
+				break;
+				
+			case 4:
+				System.out.println("Enter the quantity");
+				qty = sc.nextInt();
+				bill = qty * 80;
+				System.out.println("Bill : "+bill);
+				break;
+				
+			case 0:
+				System.exit(0);
+				
+			default:
+				System.out.println("Invalid choice");
+				break;
+		}
+	}
+}
+
+//Electricity bill
+
+package array;
+
+import java.util.Scanner;
+
+public class array1 {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int unit,bill;
+		
+		System.out.println("Categories : ");
+		System.out.println("1.Domestic \n2.Commercial \n3.Induatrial \n0.Exit");
+		System.out.println("Enter the choice");
+		int ch = sc.nextInt();
+		
+		
+		switch(ch){
+			case 1:
+				System.out.println("Enter the unit");
+				unit = sc.nextInt();
+				bill = unit * 5;
+				System.out.println("Bill : "+bill);
+				break;
+				
+			case 2:
+				System.out.println("Enter the Unit");
+				unit = sc.nextInt();
+				bill = unit * 8;
+				System.out.println("Bill : "+bill);
+				break;
+		
+				
+			case 3:
+				System.out.println("Enter the Unit");
+				unit = sc.nextInt();
+				bill = unit * 10;
+				System.out.println("Bill : "+bill);
+				break;
+				
+			case 0:
+				System.exit(0);
+				
+			default:
+				System.out.println("Invalid choice");
+				break;
+		}
+	}
+}
+
+
+//Banking system
+
+package array;
+
+import java.util.Scanner;
+
+public class array1 {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int unit,balance = 5000,amt;
+		
+		System.out.println("Welcome to Bank : ");
+		System.out.println("1.Check Balance \n2.Deposit Money \n3.Withdraw Money \n0.Exit");
+		System.out.println("Enter the choice");
+		int ch = sc.nextInt();
+		
+		
+		switch(ch){
+			case 1:
+				
+				System.out.println("Your Account Balance is : "+balance);
+				break;
+				
+			case 2:
+				System.out.println("Enter the Amount for deposit : ");
+				amt = sc.nextInt();
+				balance = balance + amt;
+				System.out.println("Update Balance : "+balance);
+				break;
+		
+				
+			case 3:
+				System.out.println("Enter the amount for withdraw : ");
+				amt = sc.nextInt();
+				if(balance > amt) {
+					balance = balance - amt;
+					System.out.println("Update Balance : "+balance);
+				}
+				else {
+					System.out.println("Insufficient Balance");
+				}
+				break;
+				
+			case 0:
+				System.out.println("Thank you for Visiting");
+				System.exit(0);
+				
+			default:
+				System.out.println("Invalid choice");
+				break;
+		}
+	}
+}
+
+//ATM card pin
+package array;
+
+import java.util.Scanner;
+
+public class array1 {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int pin = 1234,guess,counter=3;
+		
+		
+		while(counter>0) {
+			System.out.println("Enter the PIN : ");
+			guess = sc.nextInt();
+			if(guess == pin) {
+				System.out.println("Access Granted");
+				return;
+			}
+			
+			else {
+				counter--;
+				if(counter >0) {
+					System.out.println("Wrong PIN");
+					System.out.println("You have "+counter+" attempts left");
+				}
+				else {
+					System.out.println("Card Blocked,You have reached till maximum attempts");
+				}
+			}
+			
+			
+		}
+		
+
+	}
+}
+
+//Password Login System
+
+package array;
+
+import java.util.Scanner;
+
+public class array1 {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		String password = "java123",guess;
+		int counter=3;
+		
+		
+		while(counter>0) {
+			System.out.println("Enter the Password : ");
+			guess = sc.next();
+			if(password.equals(guess)) {
+				System.out.println("Login Successful");
+				return;
+			}
+			
+			else {
+				counter--;
+				if(counter >0) {
+					System.out.println("Wrong Password");
+					System.out.println("You have "+counter+" attempts left");
+				}
+				else {
+					System.out.println("System Locked,You have reached till maximum attempts");
+				}
+			}
+			
+			
+		}
+		
+
+	}
+}
+
+
+//Guess number
+
+package day_2_lab;
+
+import java.util.Random;
+import java.util.Scanner;
+
+public class lab_string {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		Random random = new Random();
+		int ran = random.nextInt(50);
+		//System.out.println(random.nextInt(50));
+		
+		int guess;
+		int counter = 5;
+		
+		while(counter>0)
+		{
+			System.out.println("Enter your guess : ");
+			guess = sc.nextInt();
+			if(guess == ran) {
+				System.out.println("Correct");
+				return;
+			}
+			else {
+				counter--;
+				System.out.println("Wrong guess");
+				if(counter>0) {
+					System.out.println(counter+" attempt left");
+					if(ran>guess) {
+						System.out.println("larger number than guess");
+						
+					}
+					else{
+						System.out.println("Smaller number than guess");
+						
+					}
+				}
+				else {
+					System.out.println("You can not Guess the number");
+				}
+				
+				
+			}
+			
+		}
+	}
+}
+
+
+
+//using do while bank management system
+
+package day_2_lab;
+
+import java.util.Random;
+import java.util.Scanner;
+
+public class lab_string {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int balance = 5000,amt,ch;
+		System.out.println("\nWelcome to Bank : ");
+		System.out.println("1.Check Balance \n2.Deposit Money \n3.Withdraw Money \n0.Exit");
+		do
+		{
+			System.out.println("\nWelcome to Bank : ");
+			System.out.println("1.Check Balance \n2.Deposit Money \n3.Withdraw Money \n0.Exit");
+			System.out.println("Enter the choice");
+			ch = sc.nextInt();
+			switch(ch){
+				case 1:
+					
+					System.out.println("Your Account Balance is : "+balance);
+					break;
+					
+				case 2:
+					System.out.println("Enter the Amount for deposit : ");
+					amt = sc.nextInt();
+					balance = balance + amt;
+					System.out.println("Update Balance : "+balance);
+					break;
+			
+					
+				case 3:
+					System.out.println("Enter the amount for withdraw : ");
+					amt = sc.nextInt();
+					if(balance > amt) {
+						balance = balance - amt;
+						System.out.println("Update Balance : "+balance);
+					}
+					else {
+						System.out.println("Insufficient Balance");
+					}
+					break;
+					
+				case 0:
+					System.out.println("Thank you for Visiting");
+					System.exit(0);
+					
+				default:
+					System.out.println("Invalid choice");
+					break;
+			}
+		}while(ch != 0);
+	}
+}
+
+
+//Restaurent management system using do while 
+
+package day_2_lab;
+
+import java.util.Random;
+import java.util.Scanner;
+
+public class lab_string {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int qty,total_bill=0,ch;
+		int p_bill,b_bill,s_bill,c_bill;
+		p_bill=b_bill=s_bill=c_bill=0;
+		
+		do {
+			System.out.println("Menu");
+			System.out.println("1.Pizza \n2.Burgur \n3.sandwitch \n4.Coffee \n5.Total bill \n0.Exit");
+			System.out.println("Enter the choice");
+			ch = sc.nextInt();
+			switch(ch){
+				case 1:
+					System.out.println("Enter the quantity");
+					qty = sc.nextInt();
+					p_bill = p_bill+ qty * 200;
+					System.out.println("Bill : "+p_bill);
+					break;
+					
+				case 2:
+					System.out.println("Enter the quantity");
+					qty = sc.nextInt();
+					b_bill = b_bill+qty * 150;
+					System.out.println("Bill : "+b_bill);
+					break;
+			
+				case 3:
+					System.out.println("Enter the quantity");
+					qty = sc.nextInt();
+					s_bill = s_bill+qty * 100;
+					System.out.println("Bill : "+s_bill);
+					break;
+					
+				case 4:
+					System.out.println("Enter the quantity");
+					qty = sc.nextInt();
+					c_bill = c_bill+qty * 80;
+					System.out.println("Bill : "+c_bill);
+					break;
+					
+				case 5:
+				    System.out.println("Total Bill");
+				    total_bill= p_bill+b_bill+s_bill+c_bill;
+				    System.out.println(total_bill);
+					
+				case 0:
+					System.out.println("Thank you for visiting");
+					System.exit(0);
+					
+				default:
+					System.out.println("Invalid choice");
+					break;
+			}
+		}while(ch !=0);
+	}
+}
